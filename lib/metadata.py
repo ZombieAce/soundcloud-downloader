@@ -9,6 +9,7 @@ from mutagen.id3 import APIC, ID3, error
 from mutagen.flac import FLAC, Picture
 from mutagen.mp4 import MP4, MP4Cover
 from lib.vorbis import make_picture_block_from_bytes
+from lib.error_handler import log_warning
 
 def _add_ogg_cover(audio, img_bytes):
     """Add cover art to Ogg Vorbis/Opus files"""
