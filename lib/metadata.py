@@ -22,7 +22,7 @@ def _add_mp3_cover(audio, img_bytes, mime_type):
     except error:
         pass # Tags already exist
 
-    # I already forgot what this does but it's probably important
+    # Check whether the MP3 has ID3 tags and delete all existing APIC frames before adding a new one
     if audio.tags is not None:
         try:
             audio.tags.delall("APIC")
@@ -91,6 +91,7 @@ async def add_cover_art_from_url(file_path: str, image_url: str, codec: str):
         mime_type = "image/jpeg"
     except Exception:
         # If normalization fails :(
+        log_warning("Failed to normalize cover art to JPEG")
         pass
 
     # Map codecs to their handlers
